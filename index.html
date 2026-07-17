@@ -1,0 +1,96 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f96302" />
+    <meta name="description" content="A markdown forecast and budget calculator." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Markdown Pro" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icons/icon-192.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Markdown Pro</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div class="brand-mark" aria-hidden="true">MP</div>
+        <div>
+          <h1>Markdown Pro</h1>
+          <p>Markdown forecast</p>
+        </div>
+      </header>
+
+      <section class="card action-card" aria-labelledby="action-heading">
+        <p class="eyebrow">TODAY'S ACTION PLAN</p>
+        <h2 id="action-heading" class="action-title">Enter your morning numbers</h2>
+        <p id="actionMessage" class="action-message" aria-live="polite">Your forecast will update as you type.</p>
+        <div class="action-summary">
+          <div>
+            <span>Damage room</span>
+            <strong id="actionDamage">$0.00</strong>
+          </div>
+          <div>
+            <span>Store budget room</span>
+            <strong id="actionBudget">$0.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="sales-heading">
+        <h2 id="sales-heading">Sales forecast</h2>
+        <div class="field-grid">
+          <label class="field">Week-to-date sales
+            <span class="input-wrap"><span>$</span><input id="wtdSales" inputmode="decimal" autocomplete="off" placeholder="604320" aria-describedby="salesHelp" /></span>
+          </label>
+          <label class="field">Today's sales plan
+            <span class="input-wrap"><span>$</span><input id="todayPlan" inputmode="decimal" autocomplete="off" placeholder="155000" /></span>
+          </label>
+        </div>
+        <p id="salesHelp" class="help-text">The slider forecasts a finish up to $50,000 over or under plan.</p>
+        <label class="range-label" for="salesSlider">Plan adjustment <output id="sliderValue" for="salesSlider">On plan</output></label>
+        <input id="salesSlider" class="slider" type="range" min="-50000" max="50000" step="5000" value="0" />
+        <div class="range-ends"><span>âˆ’$50k</span><span>On plan</span><span>+$50k</span></div>
+        <div class="forecast-total"><span>Forecast sales</span><strong id="forecastSales">$0.00</strong></div>
+      </section>
+
+      <section class="card" aria-labelledby="markdown-heading">
+        <h2 id="markdown-heading">Markdown inputs</h2>
+        <div class="field-grid">
+          <label class="field">Current damaged %
+            <span class="input-wrap"><input id="damagePercent" inputmode="decimal" autocomplete="off" placeholder="0.69" /><span>%</span></span>
+          </label>
+          <label class="field">Store total markdown %
+            <span class="input-wrap"><input id="storeMarkdownPercent" inputmode="decimal" autocomplete="off" placeholder="1.25" /><span>%</span></span>
+          </label>
+          <label class="field full-width">Total markdown budget %
+            <span class="input-wrap"><input id="budgetPercent" inputmode="decimal" autocomplete="off" value="1.60" /><span>%</span></span>
+          </label>
+        </div>
+        <p class="help-text">Current percentages are measured against WTD sales, before todayâ€™s sales are added.</p>
+      </section>
+
+      <section class="dashboard" aria-label="Forecast results">
+        <article class="tile"><span>Current damage</span><strong id="currentDamage">$0.00</strong><small>WTD damage dollars</small></article>
+        <article class="tile"><span>Damage target @ 0.83%</span><strong id="damageTarget">$0.00</strong><small>At forecast sales</small></article>
+        <article class="tile" id="damageTile"><span id="damageLabel">Damage room</span><strong id="damageRemaining">$0.00</strong><small id="damageDetail">Available to reach target</small></article>
+        <article class="tile"><span>Store markdown forecast</span><strong id="storeMarkdown">$0.00</strong><small>After damage target</small></article>
+        <article class="tile"><span>Store budget</span><strong id="budgetAmount">$0.00</strong><small>At forecast sales</small></article>
+        <article class="tile" id="budgetTile"><span id="budgetLabel">Budget room</span><strong id="budgetRemaining">$0.00</strong><small id="budgetDetail">Remaining under budget</small></article>
+      </section>
+
+      <section class="card status-card" aria-labelledby="status-heading">
+        <div class="status-heading"><h2 id="status-heading">Store budget status</h2><span id="budgetBadge" class="badge neutral">ENTER VALUES</span></div>
+        <p id="budgetStatus" aria-live="polite">Enter sales and markdown values to see your forecast.</p>
+        <div class="percent-row"><span>Projected store markdown %</span><strong id="projectedPercent">0.00%</strong></div>
+      </section>
+
+      <button id="resetButton" class="reset-button" type="button">Reset saved values</button>
+      <p class="footer-note">Saved only on this device. Calculations are forecasts, not an official store report.</p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+
